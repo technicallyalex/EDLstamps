@@ -1,5 +1,16 @@
 # Licensing, dependencies and provenance
 
+## EDLstamps v1.1.0 Windows build
+
+The Windows x64 ZIP uses CPython 3.14.6, PySide6 Essentials and Shiboken 6.12.0, Qt 6.12.0, PyInstaller 6.21.0, and PyInstaller hooks-contrib 2026.6. Third-party components retain their own terms. The archive includes the app license and separate runtime notices.
+
+- Qt, PySide6 and Shiboken are used under LGPL-3.0. The Qt DLLs and bindings are distributed as separate files in `_internal`. Compatible modified versions can be substituted. The project's license does not restrict reverse engineering for debugging modifications to these libraries.
+- Corresponding library sources are available from the upstream [Qt 6.12.0 source archive](https://download.qt.io/official_releases/qt/6.12/6.12.0/single/qt-everywhere-src-6.12.0.tar.xz) and the [PySide6/Shiboken 6.12.0 source archive](https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz). This project did not patch those libraries. Component attribution is published in the [Qt license and attribution documentation](https://doc.qt.io/qt-6/licensing.html).
+- [CPython 3.14.6 source](https://www.python.org/downloads/release/python-3146/), [PyInstaller 6.21.0 source](https://github.com/pyinstaller/pyinstaller/tree/v6.21.0), and [hooks-contrib 2026.6 source](https://github.com/pyinstaller/pyinstaller-hooks-contrib/tree/v2026.6) are also available upstream.
+- The logo and EDLstamps wordmark were generated with OpenAI image generation. Product names describe the supported workflow.
+
+## Historical audit of v1.0.1
+
 Reviewed against main at `768643c81d957f833893385d31b350b4695490ba` on 2026-10-31. The MIT license was selected by the maintainer during this audit.
 
 ## Scope of the MIT license

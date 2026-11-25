@@ -1,8 +1,10 @@
-# Resolve EDL to YouTube Chapters
+# EDLstamps
+
+<img src="assets/app-logo.png" width="96" alt="EDLstamps logo">
 
 Convert DaVinci Resolve timeline marker EDL exports into YouTube chapter timestamps.
 
-This project provides a Windows desktop app and a portable `.exe` for editors who want to turn Resolve timeline markers into clean YouTube chapter lines such as:
+EDLstamps is a portable Windows desktop app for editors who want to turn Resolve timeline markers into YouTube chapter lines such as:
 
 ```text
 0:00 Intro
@@ -12,11 +14,9 @@ This project provides a Windows desktop app and a portable `.exe` for editors wh
 
 ## Current Release
 
-Latest release:
-- [`v1.0.1 - UI and workflow improvements`](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/tag/v1.0.1)
+Download the Windows x64 ZIP from the [latest release](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest). Extract it and run `EDLstamps.exe` from the extracted folder.
 
-Download:
-- `ResolveEdlToYouTubeChapters.exe` from the repo's Releases page
+Use **Help > Check for Updates** to compare your installed version with the latest stable GitHub release. When a newer version is available, the app can open its release page in your browser. To update, extract the new ZIP into a fresh folder and launch its executable.
 
 ## What The App Does
 
@@ -39,19 +39,18 @@ Download:
 
 ## Included Files
 
-- `ResolveEdlToYouTubeChapters.exe`
-  Portable Windows build for end users
 - `resolve_edl_to_youtube_gui.py`
   Python source for the GUI app
 - `build_portable_exe.bat`
   Rebuild script for the portable executable
+- [Logo](assets/app-logo.png) and [wordmark](assets/edlstamps-wordmark.png)
 
 ## Recommended Use
 
 For most users:
 
-1. Download `ResolveEdlToYouTubeChapters.exe` from Releases.
-2. Run the app.
+1. Download and extract the Windows ZIP from Releases.
+2. Run `EDLstamps.exe`.
 3. Click `Browse` and select your Resolve marker `.edl` file.
 4. The file loads and chapters generate automatically.
 5. Adjust options if needed.
@@ -95,7 +94,7 @@ From the menu bar:
 The app can open an EDL directly from the command line:
 
 ```powershell
-.\ResolveEdlToYouTubeChapters.exe "C:\path\to\Edit.edl"
+.\EDLstamps.exe "C:\path\to\Edit.edl"
 ```
 
 ## Running From Python
@@ -103,6 +102,7 @@ The app can open an EDL directly from the command line:
 Run the source version:
 
 ```powershell
+python -m pip install -r requirements.txt
 python .\resolve_edl_to_youtube_gui.py
 ```
 
@@ -114,18 +114,20 @@ python .\resolve_edl_to_youtube_gui.py "C:\path\to\Edit.edl"
 
 ## Building The Portable EXE
 
-To rebuild the Windows executable:
+To build the Windows app with 64-bit Python:
 
 ```powershell
+python -m pip install -r requirements-build.txt
 .\build_portable_exe.bat
 ```
+
+Run `dist\qt\EDLstamps\EDLstamps.exe` and keep the entire output folder together.
 
 ## Notes
 
 - Built for Windows
 - Designed for DaVinci Resolve timeline marker EDL exports
-- Portable single-file executable
-- The app includes custom Tcl/Tk packaging support for reliable Windows builds
+- Portable Windows folder using Qt Widgets through PySide6
 - If Resolve changes its EDL marker export format, the parser may need updates
 
 ## Repo Purpose
@@ -143,10 +145,10 @@ The maintainer confirmed on 2026-10-31 that ChatGPT was used for this project. T
 
 OpenAI Codex was used for the 2026-10-31 repository audit and to draft these disclosure and licensing documentation changes. This describes this audit only and does not establish earlier Codex use.
 
+OpenAI Codex was used for the Qt migration and release checker in v1.1.0. OpenAI image generation was used for the EDLstamps logo and wordmark.
+
 ## License and third-party components
 
 The project's source and documentation are [MIT licensed](LICENSE). You may modify, fork and redistribute covered material under those terms. Keep the copyright notice, including the original repository URL, and the permission notice with copies or substantial portions.
 
-Python, Tcl/Tk, PyInstaller-related files and other components in the portable executable retain their own terms. The MIT license does not relicense them or grant rights to DaVinci Resolve, YouTube, third-party trademarks, or your input media. See [dependency, attribution and build-provenance notes](docs/THIRD_PARTY_NOTICES.md).
-
-The checked-in build script references `runtime_tkinter.py` and a `hooks/` directory that are absent from the reviewed repository. It also upgrades PyInstaller without pinning a version. The published executable cannot currently be reproduced solely from these checked-in build materials; its complete dependency versions and notice coverage remain unresolved.
+Python, Qt, PySide6, PyInstaller and other bundled components retain their own terms. The MIT license does not relicense them or grant rights to DaVinci Resolve, YouTube, third-party trademarks, or your input media. See [dependency, attribution and build-provenance notes](docs/THIRD_PARTY_NOTICES.md).
