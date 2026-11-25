@@ -4,7 +4,7 @@
 
 **Turn DaVinci Resolve timeline markers into YouTube chapters.** EDLstamps is a portable Windows app that reads marker EDL exports and generates timestamped chapter titles you can paste into a video description.
 
-[Download for Windows x64](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest) · [Try the sample EDL](examples/sample-markers.edl) · [View the wordmark](assets/edlstamps-wordmark.png)
+[Download for Windows x64](https://github.com/technicallyalex/EDLstamps/releases/latest) · [Try the sample EDL](examples/sample-markers.edl) · [View the wordmark](assets/edlstamps-wordmark.png)
 
 ## Screenshots
 
@@ -19,7 +19,7 @@
 
 ## Quick Start
 
-1. Download and extract the Windows x64 ZIP from [Releases](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest). Run `EDLstamps.exe` from the extracted folder. No installer or Python installation is required.
+1. Download and extract the Windows x64 ZIP from [Releases](https://github.com/technicallyalex/EDLstamps/releases/latest). Run `EDLstamps.exe` from the extracted folder. No installer or Python installation is required.
 2. Export your timeline markers from DaVinci Resolve as an EDL. In EDLstamps, select **Browse** to open the file, or paste its contents into **EDL Input**. You can also use the sample EDL above.
 3. Set **FPS** to match the timeline. The **YouTube Chapters** pane updates as you change the input and options.
 4. Select **Copy to Clipboard** to paste the chapters into a YouTube description, or **Save as Text File** to keep a `.txt` copy.

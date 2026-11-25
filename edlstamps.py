@@ -29,7 +29,7 @@ MODERN_MARKER_RE = re.compile(
 LEGACY_MARKER_RE = re.compile(r"\*?\s*MARKER:\s*(?P<value>.*)$", re.IGNORECASE)
 TIMECODE_RE = re.compile(r"\d{2}:\d{2}:\d{2}:\d{2}")
 APP_VERSION = "1.1.0"
-GITHUB_REPO = "technicallyalex/resolve-edl-to-youtube"
+GITHUB_REPO = "technicallyalex/EDLstamps"
 RELEASE_API = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
 
 
