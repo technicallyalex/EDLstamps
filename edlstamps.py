@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert DaVinci Resolve timeline marker EDLs to YouTube chapters."""
+"""EDLstamps converts DaVinci Resolve timeline marker EDLs to YouTube chapters."""
 
 from __future__ import annotations
 

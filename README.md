@@ -2,153 +2,78 @@
 
 <img src="assets/app-logo.png" width="96" alt="EDLstamps logo">
 
-Convert DaVinci Resolve timeline marker EDL exports into YouTube chapter timestamps.
+**Turn DaVinci Resolve timeline markers into YouTube chapters.** EDLstamps is a portable Windows app that reads marker EDL exports and generates timestamped chapter titles you can paste into a video description.
 
-EDLstamps is a portable Windows desktop app for editors who want to turn Resolve timeline markers into YouTube chapter lines such as:
+[Download for Windows x64](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest) · [Try the sample EDL](examples/sample-markers.edl) · [View the wordmark](assets/edlstamps-wordmark.png)
+
+## Screenshots
+
+![EDLstamps in Light mode with a sample EDL and five generated chapters](docs/screenshots/edlstamps-light.png)
+
+<details>
+<summary>See Dark mode</summary>
+
+![EDLstamps in Dark mode with the same sample and generated chapters](docs/screenshots/edlstamps-dark.png)
+
+</details>
+
+## Quick Start
+
+1. Download and extract the Windows x64 ZIP from [Releases](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest). Run `EDLstamps.exe` from the extracted folder. No installer or Python installation is required.
+2. Export your timeline markers from DaVinci Resolve as an EDL. In EDLstamps, select **Browse** to open the file, or paste its contents into **EDL Input**. You can also use the sample EDL above.
+3. Set **FPS** to match the timeline. The **YouTube Chapters** pane updates as you change the input and options.
+4. Select **Copy to Clipboard** to paste the chapters into a YouTube description, or **Save as Text File** to keep a `.txt` copy.
+
+The sample produces:
 
 ```text
 0:00 Intro
-0:13 Battlefield
-1:44 DLSS 5
+0:18 Getting started
+1:04 Main walkthrough
+3:42 Practical tips
+5:15 Recap
 ```
 
-## Current Release
+## Features
 
-Download the Windows x64 ZIP from the [latest release](https://github.com/technicallyalex/resolve-edl-to-youtube/releases/latest). Extract it and run `EDLstamps.exe` from the extracted folder.
+| Feature | What it does |
+| --- | --- |
+| Live preview | Generates chapters when you load or edit an EDL or change conversion options. Supports Resolve timeline marker records and older `MARKER:` lines. |
+| Chapter titles | Uses marker names by default. Select **Use marker comments** to use comments instead. |
+| Opening chapter | **Prepend 0:00 chapter** adds an opening chapter when the first marker starts later. Edit its title in the adjacent field. |
+| Duplicate lines | **Dedupe consecutive lines** removes identical adjacent timestamp-and-title lines. |
+| Output | Copies the chapter list to the clipboard or saves it as plain text. |
+| Display | **View** offers Light, Dark, and System modes. Drag the divider between the input and output panes to resize them. |
+| Updates | **Help > Check for Updates** checks the latest stable GitHub release and can open its download page. Extract a newer ZIP into a fresh folder to update. |
 
-Use **Help > Check for Updates** to compare your installed version with the latest stable GitHub release. When a newer version is available, the app can open its release page in your browser. To update, extract the new ZIP into a fresh folder and launch its executable.
+## Command Line
 
-## What The App Does
-
-- Loads DaVinci Resolve marker EDL files
-- Converts timeline marker positions into YouTube timestamp format
-- Uses marker names or marker comments as chapter titles
-- Optionally prepends a synthetic `0:00` chapter
-- Copies generated chapters to the clipboard
-- Exports generated chapters to a plain text file
-
-## Current App Behavior
-
-- Selecting an `.edl` file automatically loads it and generates chapters
-- Editing options automatically refreshes the chapter output
-- The app can be launched with an EDL path argument
-- The default display mode is `Light`
-- A `View` menu lets you switch between `Light`, `Dark`, and `System`
-- Thin scrollbars auto-hide unless content overflows
-- The status area only appears when there is something to report
-
-## Included Files
-
-- `resolve_edl_to_youtube_gui.py`
-  Python source for the GUI app
-- `build_portable_exe.bat`
-  Rebuild script for the portable executable
-- [Logo](assets/app-logo.png) and [wordmark](assets/edlstamps-wordmark.png)
-
-## Recommended Use
-
-For most users:
-
-1. Download and extract the Windows ZIP from Releases.
-2. Run `EDLstamps.exe`.
-3. Click `Browse` and select your Resolve marker `.edl` file.
-4. The file loads and chapters generate automatically.
-5. Adjust options if needed.
-6. Use `Copy to Clipboard` or `Save as Text File`.
-
-## Supported Input
-
-The app is built for DaVinci Resolve timeline marker EDL exports, including marker lines such as:
-
-```text
-|C:ResolveColorBlue |M:Battlefield |D:1
-```
-
-It also supports older `MARKER:` style lines.
-
-## Options
-
-- `FPS`
-  Timeline frame rate used to interpret timecode
-- `Use marker comments`
-  Uses the marker comment instead of the marker name
-- `Dedupe consecutive lines`
-  Removes repeated adjacent chapter lines
-- `Prepend 0:00 chapter`
-  Adds a synthetic first chapter when the first marker starts later
-- `Intro` title field
-  Sets the label used for the synthetic `0:00` chapter
-
-## Display Modes
-
-From the menu bar:
-
-- `View > Light`
-- `View > Dark`
-- `View > System`
-
-`System` follows the Windows app theme setting while the app is running.
-
-## Launching With a File Path
-
-The app can open an EDL directly from the command line:
+To open a marker EDL directly from the extracted Windows app folder:
 
 ```powershell
-.\EDLstamps.exe "C:\path\to\Edit.edl"
+.\EDLstamps.exe "C:\path\to\sample-markers.edl"
 ```
 
-## Running From Python
+## Build From Source
 
-Run the source version:
+Run the app with 64-bit Python on Windows:
 
 ```powershell
 python -m pip install -r requirements.txt
-python .\resolve_edl_to_youtube_gui.py
+python .\edlstamps.py
 ```
 
-Or pass an EDL file path:
-
-```powershell
-python .\resolve_edl_to_youtube_gui.py "C:\path\to\Edit.edl"
-```
-
-## Building The Portable EXE
-
-To build the Windows app with 64-bit Python:
+To build the portable app:
 
 ```powershell
 python -m pip install -r requirements-build.txt
 .\build_portable_exe.bat
 ```
 
-Run `dist\qt\EDLstamps\EDLstamps.exe` and keep the entire output folder together.
+Launch `dist\qt\EDLstamps\EDLstamps.exe`. Keep the entire output folder together, including `_internal`.
 
-## Notes
+## License and Credits
 
-- Built for Windows
-- Designed for DaVinci Resolve timeline marker EDL exports
-- Portable Windows folder using Qt Widgets through PySide6
-- If Resolve changes its EDL marker export format, the parser may need updates
+Project source and documentation are [MIT licensed](LICENSE). Bundled libraries and runtime components retain their respective licenses. See [third-party notices and build provenance](docs/THIRD_PARTY_NOTICES.md).
 
-## Repo Purpose
-
-This repository exists so people can:
-
-- download a ready-to-run Windows executable
-- inspect the Python source
-- rebuild the executable themselves
-- adapt the parser for their own Resolve workflow under the [MIT license](LICENSE)
-
-## AI disclosure
-
-The maintainer confirmed on 2026-10-31 that ChatGPT was used for this project. The available records do not establish the specific tasks, affected files, model versions, or proportion of AI-generated material.
-
-OpenAI Codex was used for the 2026-10-31 repository audit and to draft these disclosure and licensing documentation changes. This describes this audit only and does not establish earlier Codex use.
-
-OpenAI Codex was used for the Qt migration and release checker in v1.1.0. OpenAI image generation was used for the EDLstamps logo and wordmark.
-
-## License and third-party components
-
-The project's source and documentation are [MIT licensed](LICENSE). You may modify, fork and redistribute covered material under those terms. Keep the copyright notice, including the original repository URL, and the permission notice with copies or substantial portions.
-
-Python, Qt, PySide6, PyInstaller and other bundled components retain their own terms. The MIT license does not relicense them or grant rights to DaVinci Resolve, YouTube, third-party trademarks, or your input media. See [dependency, attribution and build-provenance notes](docs/THIRD_PARTY_NOTICES.md).
+ChatGPT assisted with the project. Codex assisted with the licensing audit, Qt migration, update checker, and repository documentation. OpenAI image generation was used for the logo and wordmark.
